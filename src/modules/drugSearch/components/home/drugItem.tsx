@@ -15,7 +15,7 @@ function DrugItem({ drug }: IDrugItem) {
             <div className="flex-1 flex flex-col items-start gap-2.5">
                 <h2 className="text-zinc-950 font-semibold text-2xl">{drug.brand_name}</h2>
                 <p className="text-[#ADB5BD]">{drug.labeler_name}</p>
-                <IngredientsGroup ingredients={drug.active_ingredients} />
+                {drug.active_ingredients ? <IngredientsGroup ingredients={drug.active_ingredients} /> : <p className="text-indigo-800 uppercase text-[10px] font-semibold">No ingredients available</p>}
             </div>
             <ChevronRight className="hidden group-hover:block text-zinc-950 size-6" />
         </div>
