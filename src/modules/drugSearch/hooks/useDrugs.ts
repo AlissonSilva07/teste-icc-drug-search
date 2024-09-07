@@ -41,7 +41,7 @@ function useDrugs() {
                 api_key: import.meta.env.VITE_CLIENT_API_KEY,
                 search: 'product_type:"human+otc+drug"',
                 limit: 1,
-                skip: skip,
+                skip: 0,
                 sort: 'marketing_start_date:desc'
             });
             setFeaturedDrug(result.results[0]);

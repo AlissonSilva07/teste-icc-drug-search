@@ -12,8 +12,8 @@ function DrugItemSearch({ drugSearch }: IDrugItemSearch) {
                 <PillBottle className="text-white size-5" />
             </div>
             <div className="flex-1 flex flex-col items-start gap-0.5">
-                <h2 className="text-zinc-950 font-semibold">{drugSearch.brand_name}</h2>
-                <p className="text-[#ADB5BD] text-xs">{drugSearch.labeler_name}</p>
+                <h2 className="text-zinc-950 font-semibold line-clamp-1">{drugSearch.brand_name}</h2>
+                <p className="text-[#ADB5BD] text-xs line-clamp-1">{drugSearch.labeler_name}</p>
             </div>
             <ChevronRight className="hidden group-hover:block text-zinc-950 size-6" />
         </div>
