@@ -3,6 +3,7 @@ import { useDrugs } from "../../hooks/useDrugs";
 import { DrugsList } from "../home/drugsList";
 import { FeaturedDrug } from "../home/featuredDrug";
 import { Pagination } from "../../../../shared/components/pagination";
+import { Separator } from "../../../../shared/components/separator";
 
 function AllItemsTab() {
     const { skip, limit, drugsList, getCurrentPage, getDrugs } = useDrugs();
@@ -35,6 +36,7 @@ function AllItemsTab() {
                 </div>
             </div>
             <FeaturedDrug />
+            <Separator />
             <DrugsList drugsList={drugsList.value} />
         </section>
     );
