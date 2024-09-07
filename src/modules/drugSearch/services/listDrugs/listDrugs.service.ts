@@ -1,4 +1,3 @@
-
 import { AxiosInstance } from "axios";
 import { http } from "../../../../shared/api/http";
 import { baseURL } from "../../../../shared/config/path";
