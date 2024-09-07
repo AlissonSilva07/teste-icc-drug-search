@@ -1,6 +1,10 @@
+import { Navbar } from "../../../shared/components/navbar"
+
 function HomePage() {
     return (
-        <h1>Oi</h1>
+        <main className="w-full bg-white">
+            <Navbar />
+        </main>
     )
 }
 
