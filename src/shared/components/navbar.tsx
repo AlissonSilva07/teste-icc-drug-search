@@ -3,7 +3,7 @@ import Logo from '../assets/Logo.png'
 
 function Navbar() {
     return (
-        <nav className="w-full h-20 px-16 flex items-center justify-between">
+        <nav className="w-full h-20 px-32 flex items-center justify-between">
             <div>
                 <Search className="text-zinc-950 size-6" />
             </div>
