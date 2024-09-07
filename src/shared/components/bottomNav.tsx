@@ -1,4 +1,4 @@
-import { LayoutTemplate } from "lucide-react"
+import { Heart, LayoutTemplate } from "lucide-react"
 
 function BottomNav() {
     return (
@@ -8,8 +8,8 @@ function BottomNav() {
                 <p>All Items</p>
             </div>
             <div className="h-full flex items-center justify-center gap-3 text-zinc-950">
-                <LayoutTemplate className="size-6" />
-                <p>All Items</p>
+                <Heart className="size-6" />
+                <p>Favorites</p>
             </div>
         </nav>
     )
