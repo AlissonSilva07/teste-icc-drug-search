@@ -1,7 +1,7 @@
 
 import { AxiosInstance } from "axios";
-import { http } from "../../../shared/api/http";
-import { baseURL } from "../../../shared/config/path";
+import { http } from "../../../../shared/api/http";
+import { baseURL } from "../../../../shared/config/path";
 import { ListDrugsInputDto, ListDrugsOutputDto } from "./listDrugs.dto";
 
 class ListDrugsService {

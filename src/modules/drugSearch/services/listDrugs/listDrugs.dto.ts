@@ -1,4 +1,4 @@
-import { Drug } from "../interfaces/drug"
+import { Drug } from "../../interfaces/drug"
 
 type ListDrugsInputDto = {
     api_key: string

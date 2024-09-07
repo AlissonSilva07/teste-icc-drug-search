@@ -6,10 +6,11 @@ import { Pagination } from "../../../../shared/components/pagination";
 import { Separator } from "../../../../shared/components/separator";
 
 function AllItemsTab() {
-    const { skip, limit, drugsList, handleNextPage, handlePrevPage, getCurrentPage, getDrugs } = useDrugs();
+    const { skip, limit, drugsList, feturedDrug, handleNextPage, handlePrevPage, getCurrentPage, getDrugs, getFeaturedDrug } = useDrugs();
 
     useEffect(() => {
         getDrugs(skip.value);
+        getFeaturedDrug()
     }, [skip.value]);
 
     return (
@@ -27,9 +28,9 @@ function AllItemsTab() {
                     />
                 </div>
             </div>
-            <FeaturedDrug />
+            <FeaturedDrug feturedDrug={feturedDrug && feturedDrug.value} />
             <Separator />
-            <DrugsList drugsList={drugsList.value} />
+            <DrugsList drugsList={drugsList && drugsList.value} />
         </section>
     );
 }
