@@ -11,6 +11,14 @@ function useDrugs() {
         return Math.floor(skip / limit) + 1;
     }
 
+    const handleNextPage = () => {
+        setSkip(skip + 4);
+    };
+
+    const handlePrevPage = () => {
+        setSkip(Math.max(skip - 4, 0));
+    };
+
     async function getDrugs(skip: number) {
         try {
             const result = await listDrugsService.execute({
@@ -38,6 +46,8 @@ function useDrugs() {
             value: limit,
             set: setLimit
         },
+        handleNextPage,
+        handlePrevPage,
         getCurrentPage,
         getDrugs
     };

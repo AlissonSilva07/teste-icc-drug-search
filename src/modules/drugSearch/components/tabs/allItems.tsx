@@ -6,19 +6,11 @@ import { Pagination } from "../../../../shared/components/pagination";
 import { Separator } from "../../../../shared/components/separator";
 
 function AllItemsTab() {
-    const { skip, limit, drugsList, getCurrentPage, getDrugs } = useDrugs();
+    const { skip, limit, drugsList, handleNextPage, handlePrevPage, getCurrentPage, getDrugs } = useDrugs();
 
     useEffect(() => {
         getDrugs(skip.value);
     }, [skip.value]);
-
-    const handleNext = () => {
-        skip.set(skip.value + 4);
-    };
-
-    const handlePrev = () => {
-        skip.set(Math.max(skip.value - 4, 0));
-    };
 
     return (
         <section className="h-full px-[480px] flex flex-col items-start gap-6">
@@ -28,9 +20,9 @@ function AllItemsTab() {
                     <p>Page:</p>
                     <Pagination
                         pageCount={`${getCurrentPage(skip.value, limit.value)} out of 10`}
-                        actionNext={handleNext}
+                        actionNext={handleNextPage}
                         disabledNext={skip.value === 36}
-                        actionPrev={handlePrev}
+                        actionPrev={handlePrevPage}
                         disabledPrev={skip.value === 0}
                     />
                 </div>
