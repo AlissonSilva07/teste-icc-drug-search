@@ -18,7 +18,6 @@ function ModalSearch({ onClose }: IModalSearch) {
             }
         }, 750);
         return () => clearTimeout(debounce);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query]);
 
     return (
