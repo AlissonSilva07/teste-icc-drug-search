@@ -5,6 +5,7 @@ import { DrugsList } from "../components/drugsList";
 import { FeaturedDrug } from "../components/featuredDrug";
 import { useDrugs } from "../hooks/useDrugs";
 import { FeaturedDrugSkeleton } from "../components/skeletons/featuredDrugSkeleton";
+import { DrugItemSkeleton } from "../components/skeletons/drugItemSkeleton";
 
 function HomePage() {
     const { skip, limit, drugsList, featuredDrug, isLoading, handleNextPage, handlePrevPage, getCurrentPage, getDrugs, getFeaturedDrug } = useDrugs();
@@ -31,7 +32,14 @@ function HomePage() {
                 </div>
                 {isLoading.value === true ? <FeaturedDrugSkeleton /> : <FeaturedDrug featuredDrug={featuredDrug.value} />}
                 <Separator />
-                <DrugsList drugsList={drugsList && drugsList.value} />
+                {isLoading.value === true ? (
+                    <div className="w-full flex flex-col items-start gap-3">
+                        <DrugItemSkeleton />
+                        <DrugItemSkeleton />
+                        <DrugItemSkeleton />
+                        <DrugItemSkeleton />
+                    </div>
+                ) : <DrugsList drugsList={drugsList && drugsList.value} />}
             </section>
         </main>
     )

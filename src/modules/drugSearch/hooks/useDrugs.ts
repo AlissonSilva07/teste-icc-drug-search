@@ -23,6 +23,7 @@ function useDrugs() {
     };
 
     async function getDrugs(skip: number) {
+        setIsLoading(true)
         try {
             const result = await listDrugsService.execute({
                 api_key: import.meta.env.VITE_CLIENT_API_KEY,
@@ -31,7 +32,9 @@ function useDrugs() {
                 skip: skip
             });
             setDrugsList(result.results)
+            setIsLoading(false)
         } catch (err: unknown) {
+            setIsLoading(false)
             console.error(err);
         }
     }
