@@ -1,4 +1,4 @@
-import { Delete, Search, X } from "lucide-react"
+import { Delete, Info, Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useSearch } from "../../modules/drugSearch/hooks/useSearch"
 import { DrugItemSearch } from "../../modules/drugSearch/components/drugItemSearch"
@@ -51,7 +51,7 @@ function ModalSearch({ onClose }: IModalSearch) {
                     <Loader />
                 ) : query.length > 0 ? (
                     error.value ? (
-                        <p className="text-red-500 italic">No matches found. Try a diferent query.</p>
+                        <p className="text-red-500">No matches found. Try a diferent query.</p>
                     ) : searchResults.value.length > 0 && (
                         <>
                             <h3 className="text-xl font-semibold">Search results for: "{query}"</h3>
@@ -63,7 +63,10 @@ function ModalSearch({ onClose }: IModalSearch) {
                         </>
                     )
                 ) : query === "" ? (
-                    <p className="text-[#ADB5BD] italic">Use the search field to query for drugs.</p>
+                    <div className="w-full flex items-center gap-3">
+                        <Info className="text-[#ADB5BD] size-4" />
+                        <p className="text-[#ADB5BD]">Use the search field to query for drugs.</p>
+                    </div>
                 ) : null}
             </div>
         </main>
