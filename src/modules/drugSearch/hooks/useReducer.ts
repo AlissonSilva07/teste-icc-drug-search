@@ -6,7 +6,8 @@ export type State = {
 
 export type Action =
     | { type: 'ADD_FAVORITE'; payload: Drug }
-    | { type: 'REMOVE_FROM_FAVORITES'; payload: string };
+    | { type: 'REMOVE_FROM_FAVORITES'; payload: string }
+    | { type: 'CLEAR' };
 
 export const favoritesReducer = (state: State, action: Action): State => {
     switch (action.type) {
@@ -20,6 +21,11 @@ export const favoritesReducer = (state: State, action: Action): State => {
                 ...state,
                 favorites: state.favorites.filter(drug => drug.product_id !== action.payload),
             };
+        case 'CLEAR':
+            return {
+                ...state,
+                favorites: []
+            }
         default:
             return state;
     }
