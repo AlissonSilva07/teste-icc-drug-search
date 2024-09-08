@@ -2,6 +2,7 @@ import { Delete, Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useSearch } from "../../modules/drugSearch/hooks/useSearch"
 import { DrugItemSearch } from "../../modules/drugSearch/components/drugItemSearch"
+import { Loader } from "./loader"
 
 interface IModalSearch {
     onClose: () => void
@@ -9,11 +10,11 @@ interface IModalSearch {
 
 function ModalSearch({ onClose }: IModalSearch) {
     const [query, setQuery] = useState<string>("")
-    const { searchResults, searchDrugs } = useSearch()
+    const { searchResults, isLoading, error, searchDrugs } = useSearch()
 
     useEffect(() => {
         const debounce = setTimeout(() => {
-            if(query) {
+            if (query) {
                 searchDrugs(query);
             }
         }, 750);
@@ -46,15 +47,24 @@ function ModalSearch({ onClose }: IModalSearch) {
                     )}
                 </div>
 
-                {query.length > 0 && searchResults.value.length > 0 && <h3 className="text-xl font-semibold">Search results for: "{query}"</h3>}
-                {query.length > 0 && searchResults.value.length > 0 ?
-                    searchResults.value.map(sR => (
-                        <div key={sR.product_id} className="w-full flex flex-col gap-3">
-                            <DrugItemSearch drugSearch={sR} />
-                        </div>
-                    ))
-                    : <p className="text-[#ADB5BD] italic">Use the search field to query for drugs.</p>
-                }
+                {isLoading.value ? (
+                    <Loader />
+                ) : query.length > 0 ? (
+                    error.value ? (
+                        <p className="text-red-500 italic">No matches found. Try a diferent query.</p>
+                    ) : searchResults.value.length > 0 && (
+                        <>
+                            <h3 className="text-xl font-semibold">Search results for: "{query}"</h3>
+                            {searchResults.value.map(sR => (
+                                <div key={sR.product_id} className="w-full flex flex-col gap-3">
+                                    <DrugItemSearch drugSearch={sR} />
+                                </div>
+                            ))}
+                        </>
+                    )
+                ) : query === "" ? (
+                    <p className="text-[#ADB5BD] italic">Use the search field to query for drugs.</p>
+                ) : null}
             </div>
         </main>
     )

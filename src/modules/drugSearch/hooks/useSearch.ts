@@ -4,8 +4,12 @@ import { Drug } from "../interfaces/drug";
 
 function useSearch() {
     const [searchResults, setSearchResults] = useState<Drug[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
 
     async function searchDrugs(query: string) {
+        setIsLoading(true);
+        setError(false); // Reset error state on new search
         try {
             const response = await searchDrugsService.execute({
                 api_key: import.meta.env.VITE_CLIENT_API_KEY,
@@ -15,7 +19,10 @@ function useSearch() {
             });
             setSearchResults(response.results);
         } catch (err: unknown) {
+            setError(true);
             console.error(err);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -23,6 +30,14 @@ function useSearch() {
         searchResults: {
             value: searchResults,
             set: setSearchResults
+        },
+        isLoading: {
+            value: isLoading,
+            set: setIsLoading
+        },
+        error: {
+            value: error,
+            setError: setError
         },
         searchDrugs
     };
