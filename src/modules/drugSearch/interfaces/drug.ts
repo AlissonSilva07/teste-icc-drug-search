@@ -12,14 +12,6 @@ interface Drug {
             strength: string
         }
     ],
-    packaging: [
-        {
-            package_ndc: string,
-            description: string,
-            marketing_start_date: string,
-            sample: false
-        }
-    ],
     listing_expiration_date: string,
     marketing_category: string,
     dosage_form: string,

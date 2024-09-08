@@ -20,7 +20,7 @@ function FeaturedDrug({ feturedDrug }: IFeaturedDrug) {
                     Latest
                 </div>
                 <h2 className="text-zinc-950 font-semibold text-2xl line-clamp-1">{feturedDrug.brand_name}</h2>
-                <p className="text-[#ADB5BD line-clamp-1]">{feturedDrug.labeler_name}</p>
+                <p className="text-[#ADB5BD] line-clamp-1">{feturedDrug.labeler_name}</p>
                 <Button onClick={() => isOpenProductDetails.set(true)} variant="primary" size="fit">
                     Details
                     <ChevronRight />
