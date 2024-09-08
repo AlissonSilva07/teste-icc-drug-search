@@ -1,6 +1,7 @@
-import { Trash } from "lucide-react"
+import { Info, Trash } from "lucide-react"
 import { useAppDataContext } from "../../../../../shared/contexts/appContext"
 import { DrugsList } from "../../../components/drugsList"
+import { Link } from "react-router-dom"
 
 function FavoritesPage() {
     const { favoriteDrugs, clearCart } = useAppDataContext()
@@ -14,7 +15,12 @@ function FavoritesPage() {
                         Clear Favorites
                     </button>
                 </div>
-                {favoriteDrugs.value.length > 0 ? <DrugsList drugsList={favoriteDrugs.value} /> : <p className="text-[#ADB5BD]">There are no favorite drugs, try adding some in All Items page.</p>}
+                {favoriteDrugs.value.length > 0 ? <DrugsList drugsList={favoriteDrugs.value} /> : (
+                    <div className="w-full flex items-center gap-3">
+                        <Info className="text-[#ADB5BD] size-4" />
+                        <p className="text-[#ADB5BD]">There are no favorite drugs yet, try adding some in <Link to="/" className="font-semibold underline decoration-solid">All Items page</Link>.</p>
+                    </div>
+                )}
             </section>
         </main>
     )
