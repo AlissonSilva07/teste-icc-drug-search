@@ -18,7 +18,6 @@ function AllItemsTab() {
             <div className="w-full flex items-center justify-between">
                 <h1 className="text-zinc-950 text-[32px] font-semibold">All Items</h1>
                 <div className="flex items-center gap-3">
-                    <p>Page:</p>
                     <Pagination
                         pageCount={`${getCurrentPage(skip.value, limit.value)} out of 10`}
                         actionNext={handleNextPage}
