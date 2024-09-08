@@ -16,10 +16,10 @@ function FeaturedDrug({ featuredDrug }: IFeaturedDrug) {
                 <PillBottle className="text-white size-12" />
             </div>
             <div className="flex flex-col items-start gap-2.5">
-                <div className="p-2 flex items-center justify-center bg-white border border-[#DEE2E6] text-zinc-950 text-xs font-semibold rounded-lg">
+                <div className="p-2 flex items-center justify-center bg-white border border-[#DEE2E6] text-black text-xs font-semibold rounded-lg">
                     Latest
                 </div>
-                <h2 className="text-zinc-950 font-semibold text-2xl line-clamp-1">{featuredDrug.brand_name}</h2>
+                <h2 className="text-black font-semibold text-2xl line-clamp-1">{featuredDrug.brand_name}</h2>
                 <p className="text-[#ADB5BD] line-clamp-1">{featuredDrug.labeler_name}</p>
                 <Button onClick={() => isOpenProductDetails.set(true)} variant="primary" size="fit">
                     Details

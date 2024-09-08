@@ -19,7 +19,7 @@ function HomePage() {
         <main className="relative w-full bg-white">
             <section className="h-full px-[480px] flex flex-col items-start gap-6">
                 <div className="w-full flex items-center justify-between">
-                    <h1 className="text-zinc-950 text-[32px] font-semibold">All Items</h1>
+                    <h1 className="text-black text-[32px] font-semibold">All Items</h1>
                     <div className="flex items-center gap-3">
                         <Pagination
                             pageCount={`${getCurrentPage(skip.value, limit.value)} out of 10`}

@@ -25,9 +25,9 @@ function ModalSearch({ onClose }: IModalSearch) {
         <main className="fixed inset-0 bg-zinc-950/30 flex justify-center z-50">
             <div className="w-2/5 h-fit mt-20 p-6 flex flex-col gap-6 bg-white rounded-xl">
                 <div className="w-full flex items-center justify-between">
-                    <h2 className="text-2xl text-zinc-950 font-semibold">Search</h2>
+                    <h2 className="text-2xl text-black font-semibold">Search</h2>
                     <button onClick={onClose} className="p-1 rounded-full hover:bg-indigo-100">
-                        <X className="text-zinc-950" />
+                        <X className="text-black" />
                     </button>
                 </div>
 
