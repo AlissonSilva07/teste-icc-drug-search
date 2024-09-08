@@ -12,6 +12,7 @@ function HomePage() {
         getDrugs(skip.value);
         getFeaturedDrug()
     }, [skip.value]);
+    
     return (
         <main className="relative w-full bg-white">
             <section className="h-full px-[480px] flex flex-col items-start gap-6">

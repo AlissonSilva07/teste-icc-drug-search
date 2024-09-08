@@ -1,29 +1,48 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { Drug } from "../../modules/drugSearch/interfaces/drug";
+import { favoritesReducer, State } from "../../modules/drugSearch/hooks/useReducer";
 
 type AppDataContextProps = {
-  isModalOpen: {
-    value: boolean;
-    setValue: (newValue: boolean) => void;
+  favoriteDrugs: {
+    value: Drug[];
+    setValue: (newValue: Drug[]) => void;
   };
-  openModal: () => void;
-  closeModal: () => void;
+  addToFavorites: (newDrug: Drug) => void;
+  removeFromFavorites: (drugId: string) => void;
 };
 
 const AppDataContext = createContext<AppDataContextProps>({} as AppDataContextProps);
 
-const AppDataContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+const STORAGE_KEY = "@favorite_drugs"
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+const AppDataContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const initialState: State = {
+    favorites: JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"),
+  };
+
+  const [state, dispatch] = useReducer(favoritesReducer, initialState);
+
+  const addToFavorites = (newDrug: Drug) => {
+    dispatch({ type: "ADD_FAVORITE", payload: newDrug });
+  };
+
+  const removeFromFavorites = (drugId: string) => {
+    dispatch({ type: "REMOVE_FROM_FAVORITES", payload: drugId });
+  };
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.favorites));
+  }, [state.favorites]);
 
   const value: AppDataContextProps = {
-    isModalOpen: {
-      value: isModalOpen,
-      setValue: setIsModalOpen
+    favoriteDrugs: {
+      value: state.favorites,
+      setValue: (newFavorites: Drug[]) => {
+        newFavorites.forEach(drug => addToFavorites(drug));
+      }
     },
-    openModal,
-    closeModal,
+    addToFavorites,
+    removeFromFavorites
   };
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;
