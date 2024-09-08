@@ -4,9 +4,10 @@ import { Separator } from "../../../shared/components/separator";
 import { DrugsList } from "../components/drugsList";
 import { FeaturedDrug } from "../components/featuredDrug";
 import { useDrugs } from "../hooks/useDrugs";
+import { FeaturedDrugSkeleton } from "../components/skeletons/featuredDrugSkeleton";
 
 function HomePage() {
-    const { skip, limit, drugsList, feturedDrug, handleNextPage, handlePrevPage, getCurrentPage, getDrugs, getFeaturedDrug } = useDrugs();
+    const { skip, limit, drugsList, featuredDrug, isLoading, handleNextPage, handlePrevPage, getCurrentPage, getDrugs, getFeaturedDrug } = useDrugs();
 
     useEffect(() => {
         getDrugs(skip.value);
@@ -28,7 +29,7 @@ function HomePage() {
                         />
                     </div>
                 </div>
-                <FeaturedDrug feturedDrug={feturedDrug && feturedDrug.value} />
+                {isLoading.value === true ? <FeaturedDrugSkeleton /> : <FeaturedDrug featuredDrug={featuredDrug.value} />}
                 <Separator />
                 <DrugsList drugsList={drugsList && drugsList.value} />
             </section>

@@ -5,7 +5,8 @@ import { listFeaturedDrugService } from "../services/listFeaturedDrug/listFeatur
 
 function useDrugs() {
     const [drugsList, setDrugsList] = useState<Drug[]>([]);
-    const [feturedDrug, setFeaturedDrug] = useState<Drug>({} as Drug);
+    const [featuredDrug, setFeaturedDrug] = useState<Drug>({} as Drug);
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [limit, setLimit] = useState<number>(4);
     const [skip, setSkip] = useState<number>(0);
 
@@ -36,6 +37,7 @@ function useDrugs() {
     }
 
     async function getFeaturedDrug() {
+        setIsLoading(true)
         try {
             const result = await listFeaturedDrugService.execute({
                 api_key: import.meta.env.VITE_CLIENT_API_KEY,
@@ -45,7 +47,9 @@ function useDrugs() {
                 sort: 'marketing_start_date:desc'
             });
             setFeaturedDrug(result.results[0]);
+            setIsLoading(false)
         } catch (err: unknown) {
+            setIsLoading(false)
             console.error(err);
         }
     }
@@ -55,9 +59,13 @@ function useDrugs() {
             value: drugsList,
             set: setDrugsList
         },
-        feturedDrug: {
-            value: feturedDrug,
+        featuredDrug: {
+            value: featuredDrug,
             set: setFeaturedDrug
+        },
+        isLoading: {
+            value: isLoading,
+            set: setIsLoading
         },
         skip: {
             value: skip,

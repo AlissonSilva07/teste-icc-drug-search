@@ -4,10 +4,10 @@ import { Drug } from "../interfaces/drug"
 import { useProductDetails } from "../hooks/useProductDetails"
 
 interface IFeaturedDrug {
-    feturedDrug: Drug
+    featuredDrug: Drug
 }
 
-function FeaturedDrug({ feturedDrug }: IFeaturedDrug) {
+function FeaturedDrug({ featuredDrug }: IFeaturedDrug) {
     const { isOpenProductDetails, renderModal } = useProductDetails()
 
     return (
@@ -19,15 +19,15 @@ function FeaturedDrug({ feturedDrug }: IFeaturedDrug) {
                 <div className="p-2 flex items-center justify-center bg-white border border-[#DEE2E6] text-zinc-950 text-xs font-semibold rounded-lg">
                     Latest
                 </div>
-                <h2 className="text-zinc-950 font-semibold text-2xl line-clamp-1">{feturedDrug.brand_name}</h2>
-                <p className="text-[#ADB5BD] line-clamp-1">{feturedDrug.labeler_name}</p>
+                <h2 className="text-zinc-950 font-semibold text-2xl line-clamp-1">{featuredDrug.brand_name}</h2>
+                <p className="text-[#ADB5BD] line-clamp-1">{featuredDrug.labeler_name}</p>
                 <Button onClick={() => isOpenProductDetails.set(true)} variant="primary" size="fit">
                     Details
                     <ChevronRight />
                 </Button>
             </div>
 
-            {isOpenProductDetails.value && renderModal(feturedDrug)}
+            {isOpenProductDetails.value && renderModal(featuredDrug)}
         </div>
     )
 }
