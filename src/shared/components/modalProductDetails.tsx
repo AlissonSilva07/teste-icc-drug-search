@@ -1,8 +1,10 @@
-import { PillBottle, X } from "lucide-react"
+import { Heart, PillBottle, X } from "lucide-react"
 import { Drug } from "../../modules/drugSearch/interfaces/drug"
 import { Separator } from "./separator"
 import dayjs from "dayjs"
 import { ActiveIngredientCard } from "../../modules/drugSearch/components/home/activeIngredientCard"
+import { useAppDataContext } from "../contexts/appContext"
+import { useEffect, useState } from "react"
 
 interface IModalSearch {
     drug: Drug
@@ -10,6 +12,34 @@ interface IModalSearch {
 }
 
 function ModalProductDetails({ drug, onClose }: IModalSearch) {
+    const { addToFavorites, removeFromFavorites } = useAppDataContext();
+
+    const localStorageItems = localStorage.getItem('@favorite_drugs')
+
+    const [isFavorite, setIsFavorite] = useState<boolean | undefined>(undefined)
+
+    function toggleFavorite() {
+        setIsFavorite(prev => !prev)
+    }
+
+    useEffect(() => {
+        if (localStorageItems) {
+            const parsedLocalStorage: Drug[] = JSON.parse(localStorageItems)
+            const findDrug = parsedLocalStorage.some(d => d.product_id === drug.product_id)
+            if (findDrug) {
+                setIsFavorite(true)
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isFavorite) {
+            addToFavorites(drug)
+        } else {
+            removeFromFavorites(drug.product_id)
+        }
+    }, [isFavorite])
+
     return (
         <main className="fixed inset-0 bg-zinc-950/30 flex justify-center z-50">
             <div className="w-2/5 h-fit mt-20 p-6 flex flex-col items-start gap-6 bg-white rounded-xl">
@@ -20,7 +50,10 @@ function ModalProductDetails({ drug, onClose }: IModalSearch) {
                     </button>
                 </div>
 
-                <div className="w-full">
+                <div className="relative w-full">
+                    <button onClick={toggleFavorite} className='group absolute top-0 right-0 p-1 rounded-lg border border-[#DEE2E6] hover:bg-[#DEE2E6]/30'>
+                        <Heart className={isFavorite ? 'fill-indigo-800 stroke-none' : 'text-[#DEE2E6]'} />
+                    </button>
                     <div className="w-full h-fit flex items-center gap-6">
                         <div className="w-[257px] h-[128px] bg-orange-600 flex items-center justify-center rounded-xl">
                             <PillBottle className="text-white size-12" />
