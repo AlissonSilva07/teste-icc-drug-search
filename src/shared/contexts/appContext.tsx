@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { Drug } from "../../modules/drugSearch/interfaces/drug";
 import { favoritesReducer, State } from "../../modules/drugSearch/hooks/useReducer";
+import toast from "react-hot-toast";
 
 type AppDataContextProps = {
   favoriteDrugs: {
@@ -24,10 +25,12 @@ const AppDataContextProvider = ({ children }: { children: React.ReactNode }) => 
 
   const addToFavorites = (newDrug: Drug) => {
     dispatch({ type: "ADD_FAVORITE", payload: newDrug });
+    toast.success('The drug was added to favorites.')
   };
 
   const removeFromFavorites = (drugId: string) => {
     dispatch({ type: "REMOVE_FROM_FAVORITES", payload: drugId });
+    toast.success('The drug was removed from favorites.')
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { ChevronRight, PillBottle } from "lucide-react"
-import { Button } from "../../../../shared/components/button"
-import { Drug } from "../../interfaces/drug"
-import { useProductDetails } from "../../hooks/useProductDetails"
+import { Button } from "../../../shared/components/button"
+import { Drug } from "../interfaces/drug"
+import { useProductDetails } from "../hooks/useProductDetails"
 
 interface IFeaturedDrug {
     feturedDrug: Drug

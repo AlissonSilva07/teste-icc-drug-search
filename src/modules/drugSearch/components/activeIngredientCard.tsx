@@ -1,4 +1,4 @@
-import { Ingredient } from "../../interfaces/ingredient"
+import { Ingredient } from "../interfaces/ingredient"
 
 interface IActiveIngredientCard {
     ingredient: Ingredient

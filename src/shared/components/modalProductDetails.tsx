@@ -2,9 +2,9 @@ import { Heart, PillBottle, X } from "lucide-react"
 import { Drug } from "../../modules/drugSearch/interfaces/drug"
 import { Separator } from "./separator"
 import dayjs from "dayjs"
-import { ActiveIngredientCard } from "../../modules/drugSearch/components/home/activeIngredientCard"
+import { ActiveIngredientCard } from "../../modules/drugSearch/components/activeIngredientCard"
 import { useAppDataContext } from "../contexts/appContext"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 interface IModalSearch {
     drug: Drug
@@ -16,29 +16,22 @@ function ModalProductDetails({ drug, onClose }: IModalSearch) {
 
     const localStorageItems = localStorage.getItem('@favorite_drugs')
 
-    const [isFavorite, setIsFavorite] = useState<boolean | undefined>(undefined)
+    const [isFavorite, setIsFavorite] = useState<boolean>(() => {
+        if (localStorageItems) {
+            const parsedLocalStorage: Drug[] = JSON.parse(localStorageItems);
+            return parsedLocalStorage.some((d) => d.product_id === drug.product_id);
+        }
+        return false;
+    });
 
     function toggleFavorite() {
-        setIsFavorite(prev => !prev)
-    }
-
-    useEffect(() => {
-        if (localStorageItems) {
-            const parsedLocalStorage: Drug[] = JSON.parse(localStorageItems)
-            const findDrug = parsedLocalStorage.some(d => d.product_id === drug.product_id)
-            if (findDrug) {
-                setIsFavorite(true)
-            }
-        }
-    }, [])
-
-    useEffect(() => {
         if (isFavorite) {
-            addToFavorites(drug)
+            removeFromFavorites(drug.product_id);
         } else {
-            removeFromFavorites(drug.product_id)
+            addToFavorites(drug);
         }
-    }, [isFavorite])
+        setIsFavorite((prev) => !prev);
+    }
 
     return (
         <main className="fixed inset-0 bg-zinc-950/30 flex justify-center z-50">

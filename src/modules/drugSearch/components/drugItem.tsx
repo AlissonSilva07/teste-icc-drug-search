@@ -1,7 +1,7 @@
 import { PillBottle, ChevronRight } from "lucide-react"
+import { Drug } from "../interfaces/drug"
+import { useProductDetails } from "../hooks/useProductDetails"
 import { IngredientsGroup } from "./ingredientsGroup"
-import { Drug } from "../../interfaces/drug"
-import { useProductDetails } from "../../hooks/useProductDetails"
 
 interface IDrugItem {
     drug: Drug

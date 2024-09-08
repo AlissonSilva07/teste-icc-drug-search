@@ -1,7 +1,7 @@
 import { Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useSearch } from "../../modules/drugSearch/hooks/useSearch"
-import { DrugItemSearch } from "../../modules/drugSearch/components/home/drugItemSearch"
+import { DrugItemSearch } from "../../modules/drugSearch/components/drugItemSearch"
 
 interface IModalSearch {
     onClose: () => void

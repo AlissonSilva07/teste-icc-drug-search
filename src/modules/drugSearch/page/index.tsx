@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Pagination } from "../../../shared/components/pagination";
 import { Separator } from "../../../shared/components/separator";
-import { DrugsList } from "../components/home/drugsList";
-import { FeaturedDrug } from "../components/home/featuredDrug";
+import { DrugsList } from "../components/drugsList";
+import { FeaturedDrug } from "../components/featuredDrug";
 import { useDrugs } from "../hooks/useDrugs";
 
 function HomePage() {

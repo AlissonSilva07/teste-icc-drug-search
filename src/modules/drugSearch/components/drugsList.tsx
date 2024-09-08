@@ -1,4 +1,4 @@
-import { Drug } from "../../interfaces/drug"
+import { Drug } from "../interfaces/drug"
 import { DrugItem } from "./drugItem"
 
 interface IDrugsList {
