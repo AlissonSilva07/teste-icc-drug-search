@@ -1,4 +1,4 @@
-import { Search, X } from "lucide-react"
+import { Delete, Search, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useSearch } from "../../modules/drugSearch/hooks/useSearch"
 import { DrugItemSearch } from "../../modules/drugSearch/components/drugItemSearch"
@@ -34,13 +34,19 @@ function ModalSearch({ onClose }: IModalSearch) {
                     <input
                         type="text"
                         className="w-full p-3 border border-[#DEE2E6] rounded-xl outline-orange-600"
-                        placeholder="E.g: Aspirin"
+                        placeholder="Type to automatically search for an item. E.g: Aspirin"
                         value={query}
                         onChange={e => setQuery(e.target.value)} />
-                    <Search className="absolute right-6 size-5 text-[#DEE2E6]" />
+                    {query.length > 0 ? (
+                        <button onClick={() => setQuery("")} className="flex items-center justify-center text-[#DEE2E6] hover:text-indigo-800">
+                            <Delete className="absolute right-6 size-5" />
+                        </button>
+                    ) : (
+                        <Search className="absolute right-6 size-5 text-[#DEE2E6]" />
+                    )}
                 </div>
 
-                <h3 className="text-xl font-semibold">Search results for: "{query}"</h3>
+                {query.length > 0 && searchResults.value.length > 0 && <h3 className="text-xl font-semibold">Search results for: "{query}"</h3>}
                 {query.length > 0 && searchResults.value.length > 0 ?
                     searchResults.value.map(sR => (
                         <div key={sR.product_id} className="w-full flex flex-col gap-3">

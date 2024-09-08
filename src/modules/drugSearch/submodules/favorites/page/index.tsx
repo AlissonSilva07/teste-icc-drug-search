@@ -14,7 +14,7 @@ function FavoritesPage() {
                         Clear Favorites
                     </button>
                 </div>
-                <DrugsList drugsList={favoriteDrugs.value} />
+                {favoriteDrugs.value.length > 0 ? <DrugsList drugsList={favoriteDrugs.value} /> : <p className="text-[#ADB5BD]">There are no favorite drugs, try adding some in All Items page.</p>}
             </section>
         </main>
     )
