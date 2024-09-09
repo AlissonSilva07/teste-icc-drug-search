@@ -12,7 +12,7 @@ function useSearch() {
         setError(false); // Reset error state on new search
         try {
             const response = await searchDrugsService.execute({
-                api_key: import.meta.env.VITE_CLIENT_API_KEY,
+                api_key: import.meta.env.VITE_CLIENT_API_KEY ?? '',
                 limit: 8,
                 search: `product_type:"human+otc+drug" AND brand_name:"${query}"`,
                 skip: 0

@@ -26,7 +26,7 @@ function useDrugs() {
         setIsLoading(true)
         try {
             const result = await listDrugsService.execute({
-                api_key: import.meta.env.VITE_CLIENT_API_KEY,
+                api_key: import.meta.env.VITE_CLIENT_API_KEY ?? '',
                 search: 'product_type:"human+otc+drug"',
                 limit: limit,
                 skip: skip
@@ -43,7 +43,7 @@ function useDrugs() {
         setIsLoading(true)
         try {
             const result = await listFeaturedDrugService.execute({
-                api_key: import.meta.env.VITE_CLIENT_API_KEY,
+                api_key: import.meta.env.VITE_CLIENT_API_KEY ?? '',
                 search: 'product_type:"human+otc+drug"',
                 limit: 1,
                 skip: 0,
