@@ -7,7 +7,7 @@ function Navbar() {
     const [isOpenModalSearch, setIsOpenModalSearch] = useState<boolean>(false)
 
     return (
-        <nav className="relative w-full h-20 px-32 flex items-center justify-between">
+        <nav className="sticky top-0 w-full h-20 px-32 bg-white flex items-center justify-between z-50">
             <button onClick={() => setIsOpenModalSearch(true)} className={`relative p-3 ${isOpenModalSearch ? 'bg-indigo-100 text-indigo-800' : 'bg-white text-black'} hover:bg-indigo-100 hover:text-indigo-800 rounded-full flex items-center gap-1`}>
                 <Search className="size-6" />
             </button>

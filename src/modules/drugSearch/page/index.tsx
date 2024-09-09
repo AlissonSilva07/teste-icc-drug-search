@@ -17,7 +17,7 @@ function HomePage() {
     
     return (
         <main className="relative w-full bg-white">
-            <section className="h-full px-[480px] flex flex-col items-start gap-6">
+            <section className="h-full pb-24 2xl:pb-0 px-[280px] 2xl:px-[480px] flex flex-col items-start gap-6">
                 <div className="w-full flex items-center justify-between">
                     <h1 className="text-black text-[32px] font-semibold">All Items</h1>
                     <div className="flex items-center gap-3">

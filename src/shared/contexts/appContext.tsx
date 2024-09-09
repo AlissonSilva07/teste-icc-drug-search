@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react"
 import { Drug } from "../../modules/drugSearch/interfaces/drug"
-import { favoritesReducer, State } from "../../modules/drugSearch/hooks/useReducer"
+import { favoritesReducer, State } from "../../modules/drugSearch/reducers/favoritesReducer"
 import toast from "react-hot-toast"
 
 type AppDataContextProps = {
